@@ -1,5 +1,10 @@
-package com.lucasgsa.boleto.process;
+package com.lucasgsa.business.boleto.process;
 
+import com.lucasgsa.entity.boleto.Boleto;
+import com.lucasgsa.entity.fatura.Fatura;
+import com.lucasgsa.entity.fatura.enums.FaturaStatusEnum;
+import com.lucasgsa.entity.pagamento.Pagamento;
+import com.lucasgsa.entity.pagamento.enums.PaymentTypeEnum;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -66,7 +71,7 @@ class BoletoProcessorTest {
     void shouldCreatePagamentosCorrectly() {
         Fatura fatura = makeFatura(BigDecimal.valueOf(100));
 
-        List<Boleto> boletos = new List.of(
+        List<Boleto> boletos = List.of(
                 makeBoleto(10.0, DATE_1),
                 makeBoleto(11.0, DATE_2),
                 makeBoleto(12.0, DATE_3));
@@ -84,7 +89,7 @@ class BoletoProcessorTest {
     }
 
     private static void assertFaturaPaid(Fatura fatura) {
-        Assertions.assertEquals(FaturaStatus.PAID, fatura.getStatus());
+        Assertions.assertEquals(FaturaStatusEnum.PAID, fatura.getStatus());
     }
 
     private static void assertFaturaPending(Fatura fatura) {
