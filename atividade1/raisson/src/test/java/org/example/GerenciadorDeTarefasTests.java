@@ -1,16 +1,27 @@
 package org.example;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.util.List;
 
 public class GerenciadorDeTarefasTests {
 
-    GerenciadorDeTarefas gerenciadorDeTarefas;
+    GerenciadorDeTarefas gerenciadorDeTarefas = new GerenciadorDeTarefas();
 
-    @BeforeAll
-    public static void setup() {
-        GerenciadorDeTarefas gerenciadorDeTarefas = new GerenciadorDeTarefas();
+    @BeforeEach
+    public void setGerenciadorDeTarefas() {
+        String titulo = "Tarefa 0";
+        String descricao = "Tarefa exemplo.";
+        String dataDeVencimento = "31/10/2023";
+        Prioridade prioridade = Prioridade.BAIXA;
+
+        gerenciadorDeTarefas.criarTarefa(
+                titulo,
+                descricao,
+                dataDeVencimento,
+                prioridade
+        );
     }
 
     @Test
@@ -38,7 +49,7 @@ public class GerenciadorDeTarefasTests {
     @Test
     public void testUpdateTitulo() {
         String titulo = "Trocando o título.";
-        Tarefa tarefa = gerenciadorDeTarefas.getTarefa("Tarefa 1");
+        Tarefa tarefa = gerenciadorDeTarefas.getTarefa("Tarefa 0");
         tarefa.setTitulo(titulo);
 
         Assertions.assertEquals(titulo, tarefa.getTitulo());
@@ -48,7 +59,7 @@ public class GerenciadorDeTarefasTests {
     public void testUpdateDescricao() {
         String descricao = "Trocando a descrição.";
 
-        Tarefa tarefa = gerenciadorDeTarefas.getTarefa("Trocando o título.");
+        Tarefa tarefa = gerenciadorDeTarefas.getTarefa("Tarefa 0");
         tarefa.setDescricao(descricao);
 
         Assertions.assertEquals(descricao, tarefa.getDescricao());
@@ -58,7 +69,7 @@ public class GerenciadorDeTarefasTests {
     public void testUpdateDataDeVencimento() {
         String dataDeVencimento = "1/1/999";
 
-        Tarefa tarefa = gerenciadorDeTarefas.getTarefa("Trocando o título.");
+        Tarefa tarefa = gerenciadorDeTarefas.getTarefa("Tarefa 0");
         tarefa.setDataDeVencimento(dataDeVencimento);
 
         Assertions.assertEquals(dataDeVencimento, tarefa.getDataDeVencimento());
@@ -66,32 +77,32 @@ public class GerenciadorDeTarefasTests {
 
     @Test
     public void testDefinirPrioridadeAlta() {
-        Tarefa tarefa = gerenciadorDeTarefas.getTarefa("Trocando o título.");
+        Tarefa tarefa = gerenciadorDeTarefas.getTarefa("Tarefa 0");
         tarefa.setPrioridade(Prioridade.ALTA);
 
-        Assertions.assertNotEquals(Prioridade.ALTA, tarefa.getPrioridade());
+        Assertions.assertEquals(Prioridade.ALTA, tarefa.getPrioridade());
     }
 
     @Test
     public void testDefinirPrioridadeMedia() {
-        Tarefa tarefa = gerenciadorDeTarefas.getTarefa("Trocando o título.");
+        Tarefa tarefa = gerenciadorDeTarefas.getTarefa("Tarefa 0");
         tarefa.setPrioridade(Prioridade.MEDIA);
 
-        Assertions.assertNotEquals(Prioridade.MEDIA, tarefa.getPrioridade());
+        Assertions.assertEquals(Prioridade.MEDIA, tarefa.getPrioridade());
     }
 
     @Test
     public void testDefinirPrioridadeBaixa() {
-        Tarefa tarefa = gerenciadorDeTarefas.getTarefa("Trocando o título.");
+        Tarefa tarefa = gerenciadorDeTarefas.getTarefa("Tarefa 0");
         tarefa.setPrioridade(Prioridade.BAIXA);
 
-        Assertions.assertNotEquals(Prioridade.BAIXA, tarefa.getPrioridade());
+        Assertions.assertEquals(Prioridade.BAIXA, tarefa.getPrioridade());
     }
 
     @Test
     public void testDeleteTarefa() {
         int tamanhoDaLista = gerenciadorDeTarefas.length();
-        gerenciadorDeTarefas.deleteTarefa("Trocando o título.");
+        gerenciadorDeTarefas.deleteTarefa("Tarefa 0");
         int novoTamanhoDaLista = gerenciadorDeTarefas.length();
 
         Assertions.assertEquals(tamanhoDaLista - 1, novoTamanhoDaLista);
@@ -99,7 +110,11 @@ public class GerenciadorDeTarefasTests {
 
     @Test
     public void testGetAllTarefas() {
-        Assertions.assertEquals("", gerenciadorDeTarefas.getAllTarefas());
+        List<Tarefa> tarefas = gerenciadorDeTarefas.getAllTarefas();
+        Assertions.assertTrue(tarefas instanceof List);
+        for (Tarefa tarefa : tarefas) {
+            Assertions.assertTrue(tarefa instanceof Tarefa);
+        }
     }
 
 }
