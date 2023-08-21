@@ -37,4 +37,8 @@ public class GerenciadorDeTarefas {
             }
         }
     }
+
+    public int length() {
+        return tarefas.size();
+    }
 }

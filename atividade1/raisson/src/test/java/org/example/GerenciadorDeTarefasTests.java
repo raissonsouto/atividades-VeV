@@ -6,18 +6,20 @@ import org.junit.jupiter.api.Test;
 
 public class GerenciadorDeTarefasTests {
 
+    GerenciadorDeTarefas gerenciadorDeTarefas;
+
     @BeforeAll
-    public static void createGerenciador() {
+    public static void setup() {
         GerenciadorDeTarefas gerenciadorDeTarefas = new GerenciadorDeTarefas();
     }
 
     @Test
     public void testCriarNovaTarefa() {
         try {
-            String titulo = "";
-            String descricao = "";
-            String dataDeVencimento = "";
-            String prioridade = "";
+            String titulo = "Tarefa 1";
+            String descricao = "Essa primeira tarefa é só um exemplo.";
+            String dataDeVencimento = "24/10/2023";
+            Prioridade prioridade = Prioridade.MEDIA;
 
             gerenciadorDeTarefas.criarTarefa(
                     titulo,
@@ -35,8 +37,8 @@ public class GerenciadorDeTarefasTests {
 
     @Test
     public void testUpdateTitulo() {
-        String titulo = "";
-        Tarefa tarefa = gerenciadorDeTarefas.getTarefa(titulo);
+        String titulo = "Trocando o título.";
+        Tarefa tarefa = gerenciadorDeTarefas.getTarefa("Tarefa 1");
         tarefa.setTitulo(titulo);
 
         Assertions.assertEquals(titulo, tarefa.getTitulo());
@@ -44,9 +46,9 @@ public class GerenciadorDeTarefasTests {
 
     @Test
     public void testUpdateDescricao() {
-        String descricao = "";
+        String descricao = "Trocando a descrição.";
 
-        Tarefa tarefa = gerenciadorDeTarefas.getTarefa(titulo);
+        Tarefa tarefa = gerenciadorDeTarefas.getTarefa("Trocando o título.");
         tarefa.setDescricao(descricao);
 
         Assertions.assertEquals(descricao, tarefa.getDescricao());
@@ -54,9 +56,9 @@ public class GerenciadorDeTarefasTests {
 
     @Test
     public void testUpdateDataDeVencimento() {
-        String dataDeVencimento = "";
+        String dataDeVencimento = "1/1/999";
 
-        Tarefa tarefa = gerenciadorDeTarefas.getTarefa(titulo);
+        Tarefa tarefa = gerenciadorDeTarefas.getTarefa("Trocando o título.");
         tarefa.setDataDeVencimento(dataDeVencimento);
 
         Assertions.assertEquals(dataDeVencimento, tarefa.getDataDeVencimento());
@@ -64,7 +66,7 @@ public class GerenciadorDeTarefasTests {
 
     @Test
     public void testDefinirPrioridadeAlta() {
-        Tarefa tarefa = gerenciadorDeTarefas.getTarefa(titulo);
+        Tarefa tarefa = gerenciadorDeTarefas.getTarefa("Trocando o título.");
         tarefa.setPrioridade(Prioridade.ALTA);
 
         Assertions.assertNotEquals(Prioridade.ALTA, tarefa.getPrioridade());
@@ -72,7 +74,7 @@ public class GerenciadorDeTarefasTests {
 
     @Test
     public void testDefinirPrioridadeMedia() {
-        Tarefa tarefa = gerenciadorDeTarefas.getTarefa(titulo);
+        Tarefa tarefa = gerenciadorDeTarefas.getTarefa("Trocando o título.");
         tarefa.setPrioridade(Prioridade.MEDIA);
 
         Assertions.assertNotEquals(Prioridade.MEDIA, tarefa.getPrioridade());
@@ -80,7 +82,7 @@ public class GerenciadorDeTarefasTests {
 
     @Test
     public void testDefinirPrioridadeBaixa() {
-        Tarefa tarefa = gerenciadorDeTarefas.getTarefa(titulo);
+        Tarefa tarefa = gerenciadorDeTarefas.getTarefa("Trocando o título.");
         tarefa.setPrioridade(Prioridade.BAIXA);
 
         Assertions.assertNotEquals(Prioridade.BAIXA, tarefa.getPrioridade());
@@ -89,7 +91,7 @@ public class GerenciadorDeTarefasTests {
     @Test
     public void testDeleteTarefa() {
         int tamanhoDaLista = gerenciadorDeTarefas.length();
-        gerenciadorDeTarefas.deleteTarefa(titulo);
+        gerenciadorDeTarefas.deleteTarefa("Trocando o título.");
         int novoTamanhoDaLista = gerenciadorDeTarefas.length();
 
         Assertions.assertEquals(tamanhoDaLista - 1, novoTamanhoDaLista);
@@ -97,7 +99,7 @@ public class GerenciadorDeTarefasTests {
 
     @Test
     public void testGetAllTarefas() {
-        Assertions.assertEquals("", gerenciadorDeTarefas.getAllTarefas()); // nao consigo imaginar o formato de saida
+        Assertions.assertEquals("", gerenciadorDeTarefas.getAllTarefas());
     }
 
 }
