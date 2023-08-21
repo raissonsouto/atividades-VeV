@@ -3,6 +3,9 @@ package org.example;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GerenciadorDeTarefasTests {
@@ -13,7 +16,7 @@ public class GerenciadorDeTarefasTests {
     public void setGerenciadorDeTarefas() {
         String titulo = "Tarefa 0";
         String descricao = "Tarefa exemplo.";
-        String dataDeVencimento = "31/10/2023";
+        LocalDate dataDeVencimento = LocalDate.of(2023, 10, 31);
         Prioridade prioridade = Prioridade.BAIXA;
 
         gerenciadorDeTarefas.criarTarefa(
@@ -29,7 +32,7 @@ public class GerenciadorDeTarefasTests {
         try {
             String titulo = "Tarefa 1";
             String descricao = "Essa primeira tarefa é só um exemplo.";
-            String dataDeVencimento = "24/10/2023";
+            LocalDate dataDeVencimento = LocalDate.of(2063, 2, 11);
             Prioridade prioridade = Prioridade.MEDIA;
 
             gerenciadorDeTarefas.criarTarefa(
@@ -67,7 +70,7 @@ public class GerenciadorDeTarefasTests {
 
     @Test
     public void testUpdateDataDeVencimento() {
-        String dataDeVencimento = "1/1/999";
+        LocalDate dataDeVencimento = LocalDate.of(1, 1, 1);
 
         Tarefa tarefa = gerenciadorDeTarefas.getTarefa("Tarefa 0");
         tarefa.setDataDeVencimento(dataDeVencimento);
@@ -110,11 +113,32 @@ public class GerenciadorDeTarefasTests {
 
     @Test
     public void testGetAllTarefas() {
-        List<Tarefa> tarefas = gerenciadorDeTarefas.getAllTarefas();
-        Assertions.assertTrue(tarefas instanceof List);
-        for (Tarefa tarefa : tarefas) {
-            Assertions.assertTrue(tarefa instanceof Tarefa);
-        }
+        Tarefa tarefa1 = new Tarefa(
+                "Tarefa 1",
+                "12341234",
+                LocalDate.of(23452,12,30),
+                Prioridade.BAIXA
+        );
+        Tarefa tarefa2 = new Tarefa(
+                "Tarefa 2",
+                "1234",
+                LocalDate.of(2010,12,10),
+                Prioridade.MEDIA
+        );
+        Tarefa tarefa3 = new Tarefa(
+                "Tarefa 3",
+                "123412341234",
+                LocalDate.of(2000,12,30),
+                Prioridade.ALTA
+        );
+
+        List<Tarefa> tarefas = new ArrayList<>();
+        tarefas.add(tarefa1);
+        tarefas.add(tarefa2);
+        tarefas.add(tarefa3);
+
+        List<Tarefa> tarefinhas = gerenciadorDeTarefas.getAllTarefas();
+        Assertions.assertEquals(tarefinhas, tarefas);
     }
 
 }

@@ -1,6 +1,8 @@
 package org.example;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class GerenciadorDeTarefas {
@@ -10,7 +12,7 @@ public class GerenciadorDeTarefas {
         tarefas = new ArrayList<>();
     }
 
-    public void criarTarefa(String titulo, String descricao, String dataDeVencimento, Prioridade prioridade) {
+    public void criarTarefa(String titulo, String descricao, LocalDate dataDeVencimento, Prioridade prioridade) {
         Tarefa tarefa = new Tarefa(titulo, descricao, dataDeVencimento, prioridade);
         tarefas.add(tarefa);
     }
