@@ -28,43 +28,37 @@ class BoletoProcessorTest {
     @ParameterizedTest
     @MethodSource
     @DisplayName("The fatura should be marked as paid when boletos are equals or bigger than fatura value.")
-    void shouldMarkFaturaAsPaid(Double faturaValue, List<Double> boletosValues) {
+    void shouldMarkFaturaAsPaid(Double faturaValue, List<Boleto> boletos) {
         Fatura fatura = makeFatura(faturaValue);
-        List<Boleto> boletos = boletosValues.stream().map(value -> makeBoleto(value, DATE_1)).toList();
-
         BoletoProcessor boletoProcessor = new BoletoProcessor(fatura);
         boletoProcessor.process(boletos);
-
-        assertFaturaPaid(fatura);
+        assertFaturaIsPaid(fatura);
     }
 
     static Stream<Arguments> shouldMarkFaturaAsPaid() {
         return Stream.of(
-                Arguments.of(1500.0, List.of(600.0, 350.0, 550.0)),
-                Arguments.of(100.0, List.of(99.0, 1.0)),
-                Arguments.of(5.0, List.of(3.6, 1.4)),
-                Arguments.of(0.0, new ArrayList<Double>()));
+                Arguments.of(1500.0, makeBoletosByValues(600.0, 350.0, 550.0)),
+                Arguments.of(100.0, makeBoletosByValues(99.0, 1.0)),
+                Arguments.of(5.0, makeBoletosByValues(3.6, 1.4)),
+                Arguments.of(0.0, makeBoletosByValues()));
     }
 
     @ParameterizedTest
     @MethodSource
     @DisplayName("The fatura should continue pending when boletos not enough to pay the fatura.")
-    void shouldKeepFaturaAsPending(Double faturaValue, List<Double> boletosValues) {
+    void shouldKeepFaturaAsPending(Double faturaValue, List<Boleto> boletos) {
         Fatura fatura = makeFatura(faturaValue);
-        List<Boleto> boletos = boletosValues.stream().map(value -> makeBoleto(value, DATE_1)).toList();
-
         BoletoProcessor boletoProcessor = new BoletoProcessor(fatura);
         boletoProcessor.process(boletos);
-
-        assertFaturaPending(fatura);
+        assertFaturaIsPending(fatura);
     }
 
     static Stream<Arguments> shouldKeepFaturaAsPending() {
         return Stream.of(
-                Arguments.of(1500.0, List.of(600.0, 350.0, 549.0)),
-                Arguments.of(100.0, List.of(99.0, 0.0)),
-                Arguments.of(100.0, List.of(99.0, 0.987654321)),
-                Arguments.of(1.0, new ArrayList<>()));
+                Arguments.of(1500.0, makeBoletosByValues(600.0, 350.0, 549.0)),
+                Arguments.of(100.0, makeBoletosByValues(99.0, 0.0)),
+                Arguments.of(100.0, makeBoletosByValues(99.0, 0.987654321)),
+                Arguments.of(1.0, makeBoletosByValues()));
     }
 
     @Test
@@ -89,12 +83,15 @@ class BoletoProcessorTest {
         Assertions.assertEquals(expectedPagamentos, fatura.getPagamentos());
     }
 
-    private static void assertFaturaPaid(Fatura fatura) {
-        Assertions.assertEquals(FaturaStatusEnum.PAID, fatura.getStatus());
-    }
+    private static List<Boleto> makeBoletosByValues(Double... values) {
+        List<Boleto> boletos = new ArrayList<>();
 
-    private static void assertFaturaPending(Fatura fatura) {
-        Assertions.assertEquals(FaturaStatusEnum.PENDING, fatura.getStatus());
+        for (Double value : values) {
+            Boleto boleto =  makeBoleto(value, DATE_1);
+            boletos.add(boleto);
+        }
+
+        return boletos;
     }
 
     private static Boleto makeBoleto(Double value, LocalDate date) {
@@ -105,6 +102,14 @@ class BoletoProcessorTest {
     private static Fatura makeFatura(Double value) {
         LocalDate date = LocalDate.of(2023, 8, 20);
         return new Fatura(CUSTOMER_NAME, date, value);
+    }
+
+    private static void assertFaturaIsPaid(Fatura fatura) {
+        Assertions.assertEquals(FaturaStatusEnum.PAID, fatura.getStatus());
+    }
+
+    private static void assertFaturaIsPending(Fatura fatura) {
+        Assertions.assertEquals(FaturaStatusEnum.PENDING, fatura.getStatus());
     }
 
 }

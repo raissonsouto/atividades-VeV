@@ -4,6 +4,7 @@ import com.lucasgsa.entity.boleto.Boleto;
 import com.lucasgsa.entity.fatura.Fatura;
 import com.lucasgsa.entity.pagamento.Pagamento;
 
+import java.util.Collection;
 import java.util.List;
 
 public class BoletoProcessor {
@@ -14,7 +15,7 @@ public class BoletoProcessor {
         this.fatura = fatura;
     }
 
-    public void process(List<Boleto> boletos) {
+    public void process(Collection<Boleto> boletos) {
         addBoletosToFatura(boletos);
         Double totalPaid = getFaturaTotalPaid();
 
@@ -23,7 +24,7 @@ public class BoletoProcessor {
         }
     }
 
-    private void addBoletosToFatura(List<Boleto> boletos) {
+    private void addBoletosToFatura(Collection<Boleto> boletos) {
         for (Boleto boleto : boletos) {
             Pagamento pagamento = new Pagamento(boleto);
             fatura.addPagamento(pagamento);
