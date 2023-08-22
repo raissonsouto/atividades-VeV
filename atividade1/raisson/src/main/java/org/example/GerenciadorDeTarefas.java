@@ -2,7 +2,6 @@ package org.example;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class GerenciadorDeTarefas {
@@ -32,12 +31,8 @@ public class GerenciadorDeTarefas {
     }
 
     public void deleteTarefa(String titulo) {
-        for (Tarefa tarefa: tarefas) {
-            if (tarefa.getTitulo().equals(titulo)) {
-                tarefas.remove(tarefa);
-                break;
-            }
-        }
+        Tarefa tarefa = getTarefa(titulo);
+        tarefas.remove(tarefa);
     }
 
     public int length() {
