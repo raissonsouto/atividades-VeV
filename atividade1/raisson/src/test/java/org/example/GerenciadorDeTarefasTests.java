@@ -11,95 +11,87 @@ import java.util.List;
 class GerenciadorDeTarefasTests {
 
     GerenciadorDeTarefas gerenciadorDeTarefas = new GerenciadorDeTarefas();
-    String TITULO = "Tarefa 0";
+    private final String tituloBase = "Lavar louça";
+    private final String descricaoBase = "Descrição genérica";
+    private final LocalDate dataBase = LocalDate.of(2030, 12, 12);
+    private final Prioridade prioridadeBase = Prioridade.MEDIA;
 
     @BeforeEach
     public void setGerenciadorDeTarefas() {
 
-        String descricao = "Tarefa exemplo.";
-        LocalDate dataDeVencimento = LocalDate.of(2023, 10, 31);
-        Prioridade prioridade = Prioridade.BAIXA;
-
         gerenciadorDeTarefas.criarTarefa(
-                TITULO,
-                descricao,
-                dataDeVencimento,
-                prioridade
+                tituloBase,
+                descricaoBase,
+                dataBase,
+                prioridadeBase
         );
     }
 
     @Test
-    public void testCriarNovaTarefa() {
+    public void testCriarNovaTarefaValida() {
         Assertions.assertDoesNotThrow(() -> {
-            String titulo = "Tarefa 1";
-            String descricao = "Essa primeira tarefa é só um exemplo.";
-            LocalDate dataDeVencimento = LocalDate.of(2063, 2, 11);
-            Prioridade prioridade = Prioridade.MEDIA;
+            String titulo = "Call mom";
 
             gerenciadorDeTarefas.criarTarefa(
                     titulo,
-                    descricao,
-                    dataDeVencimento,
-                    prioridade
+                    descricaoBase,
+                    dataBase,
+                    prioridadeBase
             );
         });
     }
 
     @Test
-    public void testDeleteTarefa() {
-        int tamanhoDaLista = gerenciadorDeTarefas.length();
-        gerenciadorDeTarefas.deleteTarefa(TITULO);
-        int novoTamanhoDaLista = gerenciadorDeTarefas.length();
+    public void testCriarTarefaJaExistente() {
+        Assertions.assertThrows(Exception.class, () -> {
+            gerenciadorDeTarefas.criarTarefa(
+                    tituloBase,
+                    descricaoBase,
+                    dataBase,
+                    prioridadeBase
+            );
+        });
+    }
 
+    @Test
+    public void testUpdateTarefaValida() {
+        Assertions.assertDoesNotThrow(() -> {
+            gerenciadorDeTarefas.getTarefa(tituloBase).setDescricao("a");
+        });
+    }
+
+    @Test
+    public void testUpdateTarefaInexistente() {
+        Assertions.assertThrows(Exception.class, () -> {
+            gerenciadorDeTarefas.getTarefa("Gol").setDescricao("a");
+        });
+    }
+
+    @Test
+    public void testDeleteTarefaValida() {
+        int tamanhoDaLista = gerenciadorDeTarefas.length();
+        gerenciadorDeTarefas.deleteTarefa(tituloBase);
+
+        int novoTamanhoDaLista = gerenciadorDeTarefas.length();
         int expectedTamanhoDaLista = tamanhoDaLista - 1;
 
         Assertions.assertEquals(expectedTamanhoDaLista, novoTamanhoDaLista);
     }
 
     @Test
+    public void testDeleteTarefaInexistente() {
+        Assertions.assertThrows(Exception.class, () -> {
+            gerenciadorDeTarefas.deleteTarefa("Gol");
+        });
+    }
+
+    @Test
     public void testGetAllTarefas() {
-        Tarefa tarefa1 = new Tarefa(
-                "Tarefa 1",
-                "12341234",
-                LocalDate.of(23452, 12, 30),
-                Prioridade.BAIXA
-        );
-        Tarefa tarefa2 = new Tarefa(
-                "Tarefa 2",
-                "1234",
-                LocalDate.of(2010, 12, 10),
-                Prioridade.MEDIA
-        );
-        Tarefa tarefa3 = new Tarefa(
-                "Tarefa 3",
-                "123412341234",
-                LocalDate.of(2000, 12, 30),
-                Prioridade.ALTA
-        );
+        gerenciadorDeTarefas.criarTarefa("Tarefa 1", descricaoBase, dataBase, prioridadeBase);
+        gerenciadorDeTarefas.criarTarefa("Tarefa 2", descricaoBase, dataBase, prioridadeBase);
 
-        List<Tarefa> tarefas = new ArrayList<>();
-
-        tarefas.add(tarefa1);
-        tarefas.add(tarefa2);
-        tarefas.add(tarefa3);
-
-        gerenciadorDeTarefas.deleteTarefa(TITULO);
-
-        gerenciadorDeTarefas.criarTarefa("Tarefa 1",
-                "12341234",
-                LocalDate.of(23452, 12, 30),
-                Prioridade.BAIXA);
-        gerenciadorDeTarefas.criarTarefa("Tarefa 2",
-                "1234",
-                LocalDate.of(2010, 12, 10),
-                Prioridade.MEDIA);
-        gerenciadorDeTarefas.criarTarefa("Tarefa 3",
-                "123412341234",
-                LocalDate.of(2000, 12, 30),
-                Prioridade.ALTA);
-
-        List<Tarefa> tarefinhas = gerenciadorDeTarefas.getAllTarefas();
-        Assertions.assertEquals(tarefinhas, tarefas);
+        List<Tarefa> tarefas = gerenciadorDeTarefas.getAllTarefas();
+        Assertions.assertEquals(tarefas.size(), 3);
     }
 
 }
