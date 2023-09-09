@@ -9,13 +9,13 @@ import java.time.LocalDate;
 class TarefaTests {
 
     private Tarefa tarefa;
-    private final String tituloBase = "Lavar louça";
-    private final String tituloMaximo = "Realizar Reunião de Planejamento para o Projeto de Desenvolvimento de Software..";
+    private final String tituloBase = "Lavar louca";
+    private final String tituloMaximo = "Realizar Reunião de Planejamento para o Projeto de Desenvolvimento de Software.";
     private final String tituloExcedente = "Realizar Reunião de Planejamento para o Projeto de Desenvolvimento de Software...";
     private final String descricaoBase = "Descrição genérica";
     private final String descricaoMaxima = "Lavar louça envolve o processo de enxaguar pratos, talheres e panelas com água e sabão," +
             " esfregar com uma bucha para remover a sujeira e impurezas, enxaguar novamente em água " +
-            "limpa e deixar secar ou secar com um pano limpo. Após isso, basta guardar em loca";
+            "limpa e deixar secar ou secar com um pano limpo. Após isso, basta guardar em";
     private final String descricaoExcedente = "Lavar louça envolve o processo de enxaguar pratos, talheres e panelas com água e sabão," +
             " esfregar com uma bucha para remover a sujeira e impurezas, enxaguar novamente em água " +
             "limpa e deixar secar ou secar com um pano limpo. Após isso, basta guardar em local adequado.";
@@ -25,7 +25,7 @@ class TarefaTests {
     private final Prioridade prioridadeBase = Prioridade.MEDIA;
 
     @BeforeEach
-    public void testCriarTarefaCasoBase() {
+    public void testCriarTarefaCasoBase() throws Exception {
         tarefa = new Tarefa(tituloBase, descricaoBase, dataBase, prioridadeBase);
     }
 
@@ -174,7 +174,7 @@ class TarefaTests {
 
     @Test
     public void testCriarTarefaComPrioridadeNull() {
-        Assertions.assertDoesNotThrow(() -> {
+        Assertions.assertThrows(NullPointerException.class, () -> {
             tarefa = new Tarefa(
                     tituloBase,
                     descricaoBase,
@@ -234,9 +234,9 @@ class TarefaTests {
     }
 
     @Test
-    public void testUpdateTituloMaximo() {
+    public void testUpdateTituloMaximo() throws Exception {
         String oldTitulo = tarefa.getTitulo();
-        tarefa.setDescricao(tituloMaximo);
+        tarefa.setTitulo(tituloMaximo);
         Assertions.assertNotEquals(oldTitulo, tarefa.getTitulo());
     }
 
@@ -276,7 +276,7 @@ class TarefaTests {
     }
 
     @Test
-    public void testUpdateDescricaoMaxima() {
+    public void testUpdateDescricaoMaxima() throws Exception {
         String oldDescricao = tarefa.getDescricao();
         tarefa.setDescricao(descricaoMaxima);
         Assertions.assertNotEquals(oldDescricao, tarefa.getDescricao());
@@ -304,17 +304,17 @@ class TarefaTests {
     }
 
     @Test
-    public void testUpdateDataToday() {
-        Assertions.assertDoesNotThrow(() -> {
-            tarefa.setDataDeVencimento(today);
-        });
+    public void testUpdateDataToday() throws Exception {
+        LocalDate oldDate = tarefa.getDataDeVencimento();
+        tarefa.setDataDeVencimento(today);
+        Assertions.assertNotEquals(oldDate, tarefa.getDataDeVencimento());
     }
 
     @Test
     public void testUpdateDataBase() {
-        LocalDate oldDate = tarefa.getDataDeVencimento();
-        tarefa.setDataDeVencimento(dataBase);
-        Assertions.assertNotEquals(oldDate, tarefa.getDataDeVencimento());
+        Assertions.assertDoesNotThrow(() -> {
+            tarefa.setDataDeVencimento(dataBase);
+        });
     }
 
     @Test

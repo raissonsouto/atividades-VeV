@@ -17,7 +17,7 @@ class GerenciadorDeTarefasTests {
     private final Prioridade prioridadeBase = Prioridade.MEDIA;
 
     @BeforeEach
-    public void setGerenciadorDeTarefas() {
+    public void setGerenciadorDeTarefas() throws Exception {
 
         gerenciadorDeTarefas.criarTarefa(
                 tituloBase,
@@ -68,7 +68,7 @@ class GerenciadorDeTarefasTests {
     }
 
     @Test
-    public void testDeleteTarefaValida() {
+    public void testDeleteTarefaValida() throws Exception {
         int tamanhoDaLista = gerenciadorDeTarefas.length();
         gerenciadorDeTarefas.deleteTarefa(tituloBase);
 
@@ -86,7 +86,7 @@ class GerenciadorDeTarefasTests {
     }
 
     @Test
-    public void testGetAllTarefas() {
+    public void testGetAllTarefas() throws Exception {
         gerenciadorDeTarefas.criarTarefa("Tarefa 1", descricaoBase, dataBase, prioridadeBase);
         gerenciadorDeTarefas.criarTarefa("Tarefa 2", descricaoBase, dataBase, prioridadeBase);
 
