@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.example.GerenciadorDeTarefasTests" tests="9" skipped="0" failures="0" errors="0" timestamp="2023-08-21T22:54:35" hostname="DESKTOP-4T49314" time="0.053">
+<testsuite name="org.example.GerenciadorDeTarefasTests" tests="7" skipped="0" failures="0" errors="0" timestamp="2023-09-09T06:24:07" hostname="DESKTOP-4T49314" time="0.188">
   <properties/>
-  <testcase name="testDefinirPrioridadeAlta()" classname="org.example.GerenciadorDeTarefasTests" time="0.03"/>
-  <testcase name="testCriarNovaTarefa()" classname="org.example.GerenciadorDeTarefasTests" time="0.002"/>
-  <testcase name="testUpdateDescricao()" classname="org.example.GerenciadorDeTarefasTests" time="0.001"/>
-  <testcase name="testUpdateTitulo()" classname="org.example.GerenciadorDeTarefasTests" time="0.002"/>
-  <testcase name="testDeleteTarefa()" classname="org.example.GerenciadorDeTarefasTests" time="0.002"/>
-  <testcase name="testDefinirPrioridadeBaixa()" classname="org.example.GerenciadorDeTarefasTests" time="0.002"/>
-  <testcase name="testDefinirPrioridadeMedia()" classname="org.example.GerenciadorDeTarefasTests" time="0.002"/>
-  <testcase name="testUpdateDataDeVencimento()" classname="org.example.GerenciadorDeTarefasTests" time="0.002"/>
-  <testcase name="testGetAllTarefas()" classname="org.example.GerenciadorDeTarefasTests" time="0.0"/>
+  <testcase name="testDeleteTarefaValida()" classname="org.example.GerenciadorDeTarefasTests" time="0.122"/>
+  <testcase name="testUpdateTarefaValida()" classname="org.example.GerenciadorDeTarefasTests" time="0.008"/>
+  <testcase name="testDeleteTarefaInexistente()" classname="org.example.GerenciadorDeTarefasTests" time="0.008"/>
+  <testcase name="testCriarTarefaJaExistente()" classname="org.example.GerenciadorDeTarefasTests" time="0.006"/>
+  <testcase name="testCriarNovaTarefaValida()" classname="org.example.GerenciadorDeTarefasTests" time="0.007"/>
+  <testcase name="testUpdateTarefaInexistente()" classname="org.example.GerenciadorDeTarefasTests" time="0.003"/>
+  <testcase name="testGetAllTarefas()" classname="org.example.GerenciadorDeTarefasTests" time="0.004"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

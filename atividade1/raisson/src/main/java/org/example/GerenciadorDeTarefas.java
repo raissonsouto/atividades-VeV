@@ -11,7 +11,9 @@ public class GerenciadorDeTarefas {
         tarefas = new ArrayList<>();
     }
 
-    public void criarTarefa(String titulo, String descricao, LocalDate dataDeVencimento, Prioridade prioridade) {
+    public void criarTarefa(String titulo, String descricao, LocalDate dataDeVencimento, Prioridade prioridade) throws Exception {
+        if (!(getTarefa(titulo) == null))
+            throw new Exception("Tarefa already exist");
         Tarefa tarefa = new Tarefa(titulo, descricao, dataDeVencimento, prioridade);
         tarefas.add(tarefa);
     }
@@ -30,7 +32,9 @@ public class GerenciadorDeTarefas {
         return tarefas;
     }
 
-    public void deleteTarefa(String titulo) {
+    public void deleteTarefa(String titulo) throws Exception {
+        if (getTarefa(titulo) == null)
+            throw new Exception("Tarefa does not exist");
         Tarefa tarefa = getTarefa(titulo);
         tarefas.remove(tarefa);
     }
