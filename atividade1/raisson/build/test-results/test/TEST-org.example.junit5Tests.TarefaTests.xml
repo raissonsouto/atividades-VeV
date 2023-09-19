@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.junit5Tests.TarefaTests" tests="36" skipped="0" failures="0" errors="0" timestamp="2023-09-19T23:16:09" hostname="DESKTOP-4T49314" time="0.312">
+  <properties/>
+  <testcase name="Cria tarefa com valores comuns e data nula" classname="org.example.junit5Tests.TarefaTests" time="0.005"/>
+  <testcase name="Testa .setTitulo() com descriÃ§Ã£o de tamanho mÃ­nimo" classname="org.example.junit5Tests.TarefaTests" time="0.004"/>
+  <testcase name="Testa .setTitulo() com descriÃ§Ã£o vazia" classname="org.example.junit5Tests.TarefaTests" time="0.006"/>
+  <testcase name="Testa .setDescricao() com descriÃ§Ã£o maior que o mÃ¡ximo permitido" classname="org.example.junit5Tests.TarefaTests" time="0.004"/>
+  <testcase name="Testa .setTitulo() com descriÃ§Ã£o no tamanho mÃ¡ximo permitido" classname="org.example.junit5Tests.TarefaTests" time="0.013"/>
+  <testcase name="Cria tarefa com valores comuns e descriÃ§Ã£o com tamanho mÃ¡ximo" classname="org.example.junit5Tests.TarefaTests" time="0.003"/>
+  <testcase name="Cria tarefa com valores comuns e descriÃ§Ã£o nula" classname="org.example.junit5Tests.TarefaTests" time="0.003"/>
+  <testcase name="Testa .setTitulo() com descriÃ§Ã£o maior que o mÃ¡ximo permitido" classname="org.example.junit5Tests.TarefaTests" time="0.008"/>
+  <testcase name="Testa .setDataDeVencimento() com a data do dia anterior que o teste foi executado" classname="org.example.junit5Tests.TarefaTests" time="0.011"/>
+  <testcase name="Cria tarefa com valores comuns e prioridade baixa" classname="org.example.junit5Tests.TarefaTests" time="0.005"/>
+  <testcase name="Testa .setDescricao() com descriÃ§Ã£onum tamanho ok" classname="org.example.junit5Tests.TarefaTests" time="0.003"/>
+  <testcase name="Testa .setDescricao() com descriÃ§Ã£o nula" classname="org.example.junit5Tests.TarefaTests" time="0.004"/>
+  <testcase name="Testa .setPrioridade() com valor Prioridade.ALTA" classname="org.example.junit5Tests.TarefaTests" time="0.003"/>
+  <testcase name="Testa .setPrioridade() com valor nulo" classname="org.example.junit5Tests.TarefaTests" time="0.005"/>
+  <testcase name="Cria tarefa com valores comuns e prioridade alta" classname="org.example.junit5Tests.TarefaTests" time="0.006"/>
+  <testcase name="Cria tarefa com valores comuns e prioridade nula" classname="org.example.junit5Tests.TarefaTests" time="0.008"/>
+  <testcase name="Cria tarefa com valores comuns e titulo nulo" classname="org.example.junit5Tests.TarefaTests" time="0.012"/>
+  <testcase name="Cria tarefa com valores comuns e titulo minimo" classname="org.example.junit5Tests.TarefaTests" time="0.004"/>
+  <testcase name="Cria tarefa com valores comuns e titulo vazio" classname="org.example.junit5Tests.TarefaTests" time="0.005"/>
+  <testcase name="Testa .setTitulo() com descriÃ§Ã£o comum" classname="org.example.junit5Tests.TarefaTests" time="0.006"/>
+  <testcase name="Testa .setTitulo() com descriÃ§Ã£o nula" classname="org.example.junit5Tests.TarefaTests" time="0.005"/>
+  <testcase name="Cria tarefa com valores comuns e descriÃ§Ã£o maior que o tamanho mÃ¡ximo" classname="org.example.junit5Tests.TarefaTests" time="0.003"/>
+  <testcase name="Cria tarefa com valores comuns e data para hoje" classname="org.example.junit5Tests.TarefaTests" time="0.002"/>
+  <testcase name="Cria tarefa com valores comuns e data para ontem" classname="org.example.junit5Tests.TarefaTests" time="0.006"/>
+  <testcase name="Testa .setDataDeVencimento() com a data do dia que o teste foi executado" classname="org.example.junit5Tests.TarefaTests" time="0.002"/>
+  <testcase name="Testa .setDescricao() com descriÃ§Ã£o no tamanho mÃ­nimo" classname="org.example.junit5Tests.TarefaTests" time="0.003"/>
+  <testcase name="Cria tarefa com valores comuns e titulo maior que o limite" classname="org.example.junit5Tests.TarefaTests" time="0.004"/>
+  <testcase name="Testa .setDescricao() com descriÃ§Ã£o menor que o permitido" classname="org.example.junit5Tests.TarefaTests" time="0.003"/>
+  <testcase name="Cria tarefa com valores comuns e descriÃ§Ã£o com tamanho mÃ­nimo" classname="org.example.junit5Tests.TarefaTests" time="0.004"/>
+  <testcase name="Cria tarefa com valores comuns e descriÃ§Ã£o vazia" classname="org.example.junit5Tests.TarefaTests" time="0.003"/>
+  <testcase name="Testa .setDescricao() com descriÃ§Ã£o com tamanho mÃ¡ximo permitido" classname="org.example.junit5Tests.TarefaTests" time="0.001"/>
+  <testcase name="Testa .setDataDeVencimento() com data num futuro longe" classname="org.example.junit5Tests.TarefaTests" time="0.004"/>
+  <testcase name="Testa .setDataDeVencimento() com a data nula" classname="org.example.junit5Tests.TarefaTests" time="0.003"/>
+  <testcase name="Testa .setPrioridade() com valor Prioridade.BAIXA" classname="org.example.junit5Tests.TarefaTests" time="0.004"/>
+  <testcase name="Testa .setPrioridade() com valor Prioridade.MEDIA" classname="org.example.junit5Tests.TarefaTests" time="0.005"/>
+  <testcase name="Cria tarefa com valores comuns e titulo maior que o limite" classname="org.example.junit5Tests.TarefaTests" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

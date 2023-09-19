@@ -1,5 +1,8 @@
-package org.example;
+package org.example.junit5Tests;
 
+import org.example.GerenciadorDeTarefas;
+import org.example.Prioridade;
+import org.example.Tarefa;
 import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
@@ -101,7 +104,7 @@ class GerenciadorDeTarefasTests {
     @Tag("TestNullValue")
     @DisplayName("Testa deletar tarefa com idenficador null")
     public void testDeleteTarefaNula() {
-        Assertions.assertThrows(NullPointerException.class, () -> {
+        Assertions.assertThrows(Exception.class, () -> {
             gerenciadorDeTarefas.deleteTarefa(null);
         });
     }

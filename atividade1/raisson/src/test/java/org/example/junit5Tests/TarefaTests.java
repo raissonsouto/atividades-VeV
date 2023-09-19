@@ -1,5 +1,7 @@
-package org.example;
+package org.example.junit5Tests;
 
+import org.example.Prioridade;
+import org.example.Tarefa;
 import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
@@ -359,8 +361,8 @@ class TarefaTests {
     @Tag("TestNullValue")
     @DisplayName("Testa .setPrioridade() com valor nulo")
     public void testUpdatePrioridadeNull() {
-        Assertions.assertThrows(Exception.class, () -> {
-            tarefa.setDataDeVencimento(null);
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            tarefa.setPrioridade(null);
         });
     }
 
