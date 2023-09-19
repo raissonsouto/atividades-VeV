@@ -1,8 +1,6 @@
 package org.example;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
 
@@ -25,11 +23,14 @@ class TarefaTests {
     private final Prioridade prioridadeBase = Prioridade.MEDIA;
 
     @BeforeEach
+    @DisplayName("Cria tarefa com valores comuns")
     public void testCriarTarefaCasoBase() throws Exception {
         tarefa = new Tarefa(tituloBase, descricaoBase, dataBase, prioridadeBase);
     }
 
     @Test
+    @Tag("TestNullValue")
+    @DisplayName("Cria tarefa com valores comuns e titulo nulo")
     public void testCriarTarefaComTituloNull() {
         Assertions.assertThrows(NullPointerException.class, () -> {
             tarefa = new Tarefa(
@@ -41,6 +42,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Cria tarefa com valores comuns e titulo vazio")
     public void testCriarTarefaComTituloVazio() {
         Assertions.assertThrows(Exception.class, () -> {
             tarefa = new Tarefa(
@@ -52,6 +54,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Cria tarefa com valores comuns e titulo minimo")
     public void testCriarTarefaComTitulo1Char() {
         Assertions.assertDoesNotThrow(() -> {
             tarefa = new Tarefa(
@@ -63,6 +66,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Cria tarefa com valores comuns e titulo maior que o limite")
     public void testCriarTarefaComTituloMaximo() {
         Assertions.assertDoesNotThrow(() -> {
             tarefa = new Tarefa(
@@ -74,6 +78,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Cria tarefa com valores comuns e titulo maior que o limite")
     public void testCriarTarefaComTituloExcedente() {
         Assertions.assertThrows(Exception.class, () -> {
             tarefa = new Tarefa(
@@ -85,6 +90,8 @@ class TarefaTests {
     }
 
     @Test
+    @Tag("TestNullValue")
+    @DisplayName("Cria tarefa com valores comuns e descrição nula")
     public void testCriarTarefaComDescricaoNull() {
         Assertions.assertThrows(NullPointerException.class, () -> {
             tarefa = new Tarefa(
@@ -96,6 +103,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Cria tarefa com valores comuns e descrição vazia")
     public void testCriarTarefaComDescricaoVazia() {
         Assertions.assertThrows(Exception.class, () -> {
             tarefa = new Tarefa(
@@ -107,6 +115,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Cria tarefa com valores comuns e descrição com tamanho mínimo")
     public void testCriarTarefaComDescricao1Char() {
         Assertions.assertDoesNotThrow(() -> {
             tarefa = new Tarefa(
@@ -118,6 +127,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Cria tarefa com valores comuns e descrição com tamanho máximo")
     public void testCriarTarefaComDescricaoMaxima() {
         Assertions.assertDoesNotThrow(() -> {
             tarefa = new Tarefa(
@@ -129,6 +139,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Cria tarefa com valores comuns e descrição maior que o tamanho máximo")
     public void testCriarTarefaComDescricaoExcedente() {
         Assertions.assertThrows(Exception.class, () -> {
             tarefa = new Tarefa(
@@ -140,6 +151,8 @@ class TarefaTests {
     }
 
     @Test
+    @Tag("TestNullValue")
+    @DisplayName("Cria tarefa com valores comuns e data nula")
     public void testCriarTarefaComDataNull() {
         Assertions.assertThrows(NullPointerException.class, () -> {
             tarefa = new Tarefa(
@@ -151,6 +164,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Cria tarefa com valores comuns e data para ontem")
     public void testCriarTarefaComDataPraOntem() {
         Assertions.assertThrows(Exception.class, () -> {
             tarefa = new Tarefa(
@@ -162,6 +176,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Cria tarefa com valores comuns e data para hoje")
     public void testCriarTarefaComDataPraHoje() {
         Assertions.assertDoesNotThrow(() -> {
             tarefa = new Tarefa(
@@ -173,6 +188,8 @@ class TarefaTests {
     }
 
     @Test
+    @Tag("TestNullValue")
+    @DisplayName("Cria tarefa com valores comuns e prioridade nula")
     public void testCriarTarefaComPrioridadeNull() {
         Assertions.assertThrows(NullPointerException.class, () -> {
             tarefa = new Tarefa(
@@ -184,6 +201,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Cria tarefa com valores comuns e prioridade alta")
     public void testCriarTarefaComPrioridadeAlta() {
         Assertions.assertDoesNotThrow(() -> {
             tarefa = new Tarefa(
@@ -195,6 +213,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Cria tarefa com valores comuns e prioridade baixa")
     public void testCriarTarefaComPrioridadeBaixa() {
         Assertions.assertDoesNotThrow(() -> {
             tarefa = new Tarefa(
@@ -206,6 +225,8 @@ class TarefaTests {
     }
 
     @Test
+    @Tag("TestNullValue")
+    @DisplayName("Testa .setTitulo() com descrição nula")
     public void testUpdateTituloNull() {
         Assertions.assertThrows(NullPointerException.class, () -> {
             tarefa.setTitulo(null);
@@ -213,6 +234,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Testa .setTitulo() com descrição vazia")
     public void testUpdateTituloVazio() {
         Assertions.assertThrows(Exception.class, () -> {
             tarefa.setTitulo("");
@@ -220,6 +242,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Testa .setTitulo() com descrição de tamanho mínimo")
     public void testUpdateTitulo1Char() {
         Assertions.assertDoesNotThrow(() -> {
             tarefa.setTitulo("a");
@@ -227,6 +250,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Testa .setTitulo() com descrição comum")
     public void testUpdateTituloBase() {
         Assertions.assertDoesNotThrow(() -> {
             tarefa.setTitulo(tituloBase);
@@ -234,6 +258,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Testa .setTitulo() com descrição no tamanho máximo permitido")
     public void testUpdateTituloMaximo() throws Exception {
         String oldTitulo = tarefa.getTitulo();
         tarefa.setTitulo(tituloMaximo);
@@ -241,6 +266,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Testa .setTitulo() com descrição maior que o máximo permitido")
     public void testUpdateTituloExcedente() {
         Assertions.assertThrows(Exception.class, () -> {
             tarefa.setTitulo(tituloExcedente);
@@ -248,6 +274,8 @@ class TarefaTests {
     }
 
     @Test
+    @Tag("TestNullValue")
+    @DisplayName("Testa .setDescricao() com descrição nula")
     public void testUpdateDescricaoNull() {
         Assertions.assertThrows(NullPointerException.class, () -> {
             tarefa.setDescricao(null);
@@ -255,6 +283,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Testa .setDescricao() com descrição menor que o permitido")
     public void testUpdateDescricaoVazio() {
         Assertions.assertThrows(Exception.class, () -> {
             tarefa.setDescricao("");
@@ -262,6 +291,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Testa .setDescricao() com descrição no tamanho mínimo")
     public void testUpdateDescricao1Char() {
         Assertions.assertDoesNotThrow(() -> {
             tarefa.setDescricao("a");
@@ -269,6 +299,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Testa .setDescricao() com descriçãonum tamanho ok")
     public void testUpdateDescricaoBase() {
         Assertions.assertDoesNotThrow(() -> {
             tarefa.setDescricao(descricaoBase);
@@ -276,6 +307,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Testa .setDescricao() com descrição com tamanho máximo permitido")
     public void testUpdateDescricaoMaxima() throws Exception {
         String oldDescricao = tarefa.getDescricao();
         tarefa.setDescricao(descricaoMaxima);
@@ -283,6 +315,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Testa .setDescricao() com descrição maior que o máximo permitido")
     public void testUpdateDescricaoExcedente() {
         Assertions.assertThrows(Exception.class, () -> {
             tarefa.setDescricao(descricaoExcedente);
@@ -290,6 +323,8 @@ class TarefaTests {
     }
 
     @Test
+    @Tag("TestNullValue")
+    @DisplayName("Testa .setDataDeVencimento() com a data nula")
     public void testUpdateDataNull() {
         Assertions.assertThrows(NullPointerException.class, () -> {
             tarefa.setDataDeVencimento(null);
@@ -297,6 +332,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Testa .setDataDeVencimento() com a data do dia anterior que o teste foi executado")
     public void testUpdateDataYesterday() {
         Assertions.assertThrows(Exception.class, () -> {
             tarefa.setDataDeVencimento(yesterday);
@@ -304,6 +340,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Testa .setDataDeVencimento() com a data do dia que o teste foi executado")
     public void testUpdateDataToday() throws Exception {
         LocalDate oldDate = tarefa.getDataDeVencimento();
         tarefa.setDataDeVencimento(today);
@@ -311,6 +348,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Testa .setDataDeVencimento() com data num futuro longe")
     public void testUpdateDataBase() {
         Assertions.assertDoesNotThrow(() -> {
             tarefa.setDataDeVencimento(dataBase);
@@ -318,6 +356,8 @@ class TarefaTests {
     }
 
     @Test
+    @Tag("TestNullValue")
+    @DisplayName("Testa .setPrioridade() com valor nulo")
     public void testUpdatePrioridadeNull() {
         Assertions.assertThrows(Exception.class, () -> {
             tarefa.setDataDeVencimento(null);
@@ -325,6 +365,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Testa .setPrioridade() com valor Prioridade.BAIXA")
     public void testUpdatePrioridadeBaixa() {
         Assertions.assertDoesNotThrow(() -> {
             tarefa.setPrioridade(Prioridade.BAIXA);
@@ -332,6 +373,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Testa .setPrioridade() com valor Prioridade.MEDIA")
     public void testUpdatePrioridadeMedia() {
         Assertions.assertDoesNotThrow(() -> {
             tarefa.setPrioridade(Prioridade.MEDIA);
@@ -339,6 +381,7 @@ class TarefaTests {
     }
 
     @Test
+    @DisplayName("Testa .setPrioridade() com valor Prioridade.ALTA")
     public void testUpdatePrioridadeAlta() {
         Prioridade oldPrioridade = tarefa.getPrioridade();
         tarefa.setPrioridade(Prioridade.ALTA);

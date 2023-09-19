@@ -1,11 +1,8 @@
 package org.example;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 class GerenciadorDeTarefasTests {
@@ -28,6 +25,7 @@ class GerenciadorDeTarefasTests {
     }
 
     @Test
+    @DisplayName("Testa atualizar tarefa valida")
     public void testCriarNovaTarefaValida() {
         Assertions.assertDoesNotThrow(() -> {
             String titulo = "Call mom";
@@ -42,6 +40,7 @@ class GerenciadorDeTarefasTests {
     }
 
     @Test
+    @DisplayName("Testa criar tarefa com identificador previamente utilizado")
     public void testCriarTarefaJaExistente() {
         Assertions.assertThrows(Exception.class, () -> {
             gerenciadorDeTarefas.criarTarefa(
@@ -54,6 +53,7 @@ class GerenciadorDeTarefasTests {
     }
 
     @Test
+    @DisplayName("Testa atualizar tarefa com identificador reconhecido")
     public void testUpdateTarefaValida() {
         Assertions.assertDoesNotThrow(() -> {
             gerenciadorDeTarefas.getTarefa(tituloBase).setDescricao("a");
@@ -61,13 +61,24 @@ class GerenciadorDeTarefasTests {
     }
 
     @Test
+    @DisplayName("Testa atualizar tarefa com identificador não reconhecido")
     public void testUpdateTarefaInexistente() {
         Assertions.assertThrows(Exception.class, () -> {
             gerenciadorDeTarefas.getTarefa("Gol").setDescricao("a");
         });
     }
 
+    @NewTest
+    @Tag("TestNullValue")
+    @DisplayName("Testa atualizar tarefa com identificador nulo")
+    public void testUpdateTarefaNula() {
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            gerenciadorDeTarefas.getTarefa(null).setDescricao("a");
+        });
+    }
+
     @Test
+    @DisplayName("Testa deletar tarefa com identificador valido")
     public void testDeleteTarefaValida() throws Exception {
         int tamanhoDaLista = gerenciadorDeTarefas.length();
         gerenciadorDeTarefas.deleteTarefa(tituloBase);
@@ -79,13 +90,24 @@ class GerenciadorDeTarefasTests {
     }
 
     @Test
+    @DisplayName("Testa deletar tarefa com identificador não reconhecido")
     public void testDeleteTarefaInexistente() {
         Assertions.assertThrows(Exception.class, () -> {
             gerenciadorDeTarefas.deleteTarefa("Gol");
         });
     }
 
+    @NewTest
+    @Tag("TestNullValue")
+    @DisplayName("Testa deletar tarefa com idenficador null")
+    public void testDeleteTarefaNula() {
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            gerenciadorDeTarefas.deleteTarefa(null);
+        });
+    }
+
     @Test
+    @DisplayName("Get lista com todas as tarefas")
     public void testGetAllTarefas() throws Exception {
         gerenciadorDeTarefas.criarTarefa("Tarefa 1", descricaoBase, dataBase, prioridadeBase);
         gerenciadorDeTarefas.criarTarefa("Tarefa 2", descricaoBase, dataBase, prioridadeBase);
