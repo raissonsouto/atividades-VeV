@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.junit5Tests.GerenciadorDeTarefasTests" tests="9" skipped="0" failures="0" errors="0" timestamp="2023-09-19T23:16:09" hostname="DESKTOP-4T49314" time="0.211">
+  <properties/>
+  <testcase name="Testa deletar tarefa com identificador valido" classname="org.example.junit5Tests.GerenciadorDeTarefasTests" time="0.126"/>
+  <testcase name="Testa atualizar tarefa com identificador reconhecido" classname="org.example.junit5Tests.GerenciadorDeTarefasTests" time="0.014"/>
+  <testcase name="Testa deletar tarefa com identificador nÃ£o reconhecido" classname="org.example.junit5Tests.GerenciadorDeTarefasTests" time="0.007"/>
+  <testcase name="Testa criar tarefa com identificador previamente utilizado" classname="org.example.junit5Tests.GerenciadorDeTarefasTests" time="0.007"/>
+  <testcase name="Testa deletar tarefa com idenficador null" classname="org.example.junit5Tests.GerenciadorDeTarefasTests" time="0.005"/>
+  <testcase name="Testa atualizar tarefa com identificador nulo" classname="org.example.junit5Tests.GerenciadorDeTarefasTests" time="0.004"/>
+  <testcase name="Testa atualizar tarefa valida" classname="org.example.junit5Tests.GerenciadorDeTarefasTests" time="0.006"/>
+  <testcase name="Testa atualizar tarefa com identificador nÃ£o reconhecido" classname="org.example.junit5Tests.GerenciadorDeTarefasTests" time="0.006"/>
+  <testcase name="Get lista com todas as tarefas" classname="org.example.junit5Tests.GerenciadorDeTarefasTests" time="0.005"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
